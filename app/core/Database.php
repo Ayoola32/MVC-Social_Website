@@ -1,35 +1,48 @@
-<?php 
+<?php
 
 namespace Model;
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
-Trait Database{
+Trait Database {
+    public $conn;
 
-	private function connect(){
-		$string = "mysql:hostname=".DBHOST.";dbname=".DBNAME;
-		$con = new PDO($string,DBUSER,DBPASS);
-		return $con;
-	}
+    public function __construct(){
+        $this->getConnection();
+    }
 
-	public function query($query, $data = []){
+    public function getConnection() {
+        $this->conn = null;
+        try {
+            $string = "mysql:host=" . DBHOST . ";dbname=" . DBNAME;
+            $this->conn = new PDO($string, DBUSER, DBPASS);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn->exec("set names utf8");
+        } catch (PDOException $exception) {
+            echo "Connection error: " . $exception->getMessage();
+        }
+        return $this->conn;
+    }
 
-		$con = $this->connect();
-		$stm = $con->prepare($query);
 
-		$check = $stm->execute($data);
-		if($check){
-			$result = $stm->fetchAll(PDO::FETCH_OBJ);
-			if(is_array($result) && count($result))
-			{
-				return $result;
-			}
-		}
+    public function query($sql, $data = []){
+        if ($this->conn === null) {
+            throw new Exception("Database connection is not established.");
+        }
+        
+        $stmt = $this->conn->prepare($sql);
 
-		return false;
-	}
+        $check = $stmt->execute($data);
+        if ($check) {
+            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+            if (is_array($result) && count($result)) {
+                return $result;
+            }
+        }
+        return false;
+    }
 
-	public function get_row($query, $data = []){
+    public function get_row($query, $data = []){
 
 		$con = $this->connect();
 		$stm = $con->prepare($query);
