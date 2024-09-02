@@ -15,26 +15,25 @@ Trait Database {
         $this->conn = null;
         try {
             $string = "mysql:host=" . DBHOST . ";dbname=" . DBNAME;
-            $this->conn = new PDO($string, DBUSER, DBPASS);
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $this->conn = new \PDO($string, DBUSER, DBPASS);  // Use \PDO to avoid namespace issues
+            $this->conn->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
             $this->conn->exec("set names utf8");
-        } catch (PDOException $exception) {
+            // echo "Database connected successfully.";
+        } catch (\PDOException $exception) {
             echo "Connection error: " . $exception->getMessage();
         }
         return $this->conn;
     }
 
-
-    public function query($sql, $data = []){
+    public function query($sql, $data = []) {
         if ($this->conn === null) {
-            throw new Exception("Database connection is not established.");
+            throw new \Exception("Database connection is not established.");
         }
-        
-        $stmt = $this->conn->prepare($sql);
 
+        $stmt = $this->conn->prepare($sql);
         $check = $stmt->execute($data);
         if ($check) {
-            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $result = $stmt->fetchAll(\PDO::FETCH_OBJ);
             if (is_array($result) && count($result)) {
                 return $result;
             }
@@ -49,7 +48,7 @@ Trait Database {
 
 		$check = $stm->execute($data);
 		if($check){
-			$result = $stm->fetchAll(PDO::FETCH_OBJ);
+			$result = $stm->fetchAll(\PDO::FETCH_OBJ);
 			if(is_array($result) && count($result))
 			{
 				return $result[0];
