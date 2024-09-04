@@ -28,9 +28,9 @@ require 'Controller.php';
 require 'functions.php';
 require 'Database.php';
 require 'Model.php';
-require 'Pager.php';
-require 'Request.php';
-require 'Session.php';
+// require 'Pager.php';
+// require 'Request.php';
+// require 'Session.php';
 require 'App.php';
 
 
