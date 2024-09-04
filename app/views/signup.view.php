@@ -75,6 +75,13 @@
                 </div>
                 <h1 class="h3 mb-3 fw-normal text-center">Sign up</h1>
 
+
+                <?php if(!empty($errors)):?>
+                    <div class='alert alert-warning text-center'>
+                        <h4>Fix errors</h4>
+                    </div>
+                <?php endif;?>
+
                 <div class="form-floating">
                     <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">Email address</label>
