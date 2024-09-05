@@ -75,13 +75,19 @@
                 </div>
                 <h1 class="h3 mb-3 fw-normal text-center">Sign in</h1>
 
+                <?php if(!empty($errors)):?>
+                    <div class='alert alert-warning text-center'>
+                        <h5><?=implode("<br>", $errors);?></h5>
+                    </div>
+                <?php endif;?>
+
                 <div class="form-floating">
-                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input type="email" value="<?= old_value('email') ?>" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput">Email address</label>
                 </div>
 
                 <div class="form-floating">
-                    <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
+                    <input type="password" value="<?= old_value('password') ?>" name="password" class="form-control" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Password</label>
                 </div>
                 
