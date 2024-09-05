@@ -83,7 +83,7 @@
                 <?php endif;?>
 
                 <div class="form-floating">
-                    <input type="email" name="email" value="<?= old_value('user_email') ?>" class="form-control" id="floatingEmail" placeholder="name@example.com" autocomplete="email">
+                    <input type="email" name="email" value="<?= old_value('email') ?>" class="form-control" id="floatingEmail" placeholder="name@example.com" autocomplete="email">
                     <label for="floatingEmail">Email address</label>
 
                     <?php if (!empty($errors['email'])): ?>
