@@ -17,17 +17,20 @@ class Signup{
 		$req = new Request();
 		if ($req->posted()) {
 
-echo "here1";
 			$user = new User();
 			if ($user->validate($req->post())) {
-echo "here2";
 				// Save to database
+
+				// Hash Password
+				$randSalt = "alwayskeepchaseYOURgreatness2024tilleternity";
+				$password = password_hash($req->post('password'), PASSWORD_BCRYPT, array($randSalt => 12 ));
+				$req->set('password', $password);
+				$req->set('date', date("Y-m-d H:i:s"));
+
 				$user->insert($req->post());
 				redirect('login');
 
 			}
-
-show($user->errors);
 			$data['errors'] = $user->errors;
 		}
 
