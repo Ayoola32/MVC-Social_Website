@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="<?=APP_DESC?>">
         <meta name="generator" content="Hugo 0.122.0">
-        <title>Login </title>
+        <title>Signup </title>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -78,30 +78,55 @@
 
                 <?php if(!empty($errors)):?>
                     <div class='alert alert-warning text-center'>
-                        <h4>Fix errors</h4>
+                        <h4>Fix the input field</h4>
                     </div>
                 <?php endif;?>
 
                 <div class="form-floating">
-                    <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+                    <input type="email" name="email" value="<?= old_value('user_email') ?>" class="form-control" id="floatingEmail" placeholder="name@example.com" autocomplete="email">
+                    <label for="floatingEmail">Email address</label>
+
+                    <?php if (!empty($errors['email'])): ?>
+                        <div class="text-center text-danger">
+                            <?= $errors['email']; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
 
                 <div class="form-floating">
-                    <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username">
-                    <label for="floatingInput">Username</label>
+                    <input type="text" name="username" value="<?= old_value('username') ?>" class="form-control" id="floatingUsername" placeholder="Username" autocomplete="off">
+                    <label for="floatingUsername">Username</label>
+
+                    <?php if (!empty($errors['username'])): ?>
+                        <div class="text-center text-danger">
+                            <?= $errors['username']; ?>
+                        </div>
+                    <?php endif; ?>
                 </div>
+
+                
 
                 <div class="form-floating">
                     <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
                     <label for="floatingPassword">Password</label>
+
+                    <?php if(!empty($errors['password'])):?>
+                        <div class="text-center text-danger">
+                            <?=$errors['password'];?>
+                        </div>
+                    <?php endif;?>
                 </div>
                 
                 <div class="d-flex justify-content-center">
                     <div class="form-check text-start my-3 text-center">
                        <label for="checkbox">
-                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="terms"><a href="" class="text-decoration-none"> Accept Terms</a>
+                            <input class="form-check-input" type="checkbox" value="1" <?=old_checked("terms", 1)?>id="flexCheckDefault" name="terms"><a href="" class="text-decoration-none"> Accept Terms</a>
                        </label>
+                       <?php if(!empty($errors['terms'])):?>
+                           <div class="text-center text-danger">
+                               <?=$errors['terms'];?>
+                           </div>
+                       <?php endif;?>
                     </div>
                 </div>
                 
