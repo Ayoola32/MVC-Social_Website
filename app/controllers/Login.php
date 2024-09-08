@@ -35,6 +35,9 @@ class Login{
 			$user->errors['email'] = "Wrong email or password";
 			$data['errors'] = $user->errors;
 			$this->view('login', $data);
+		} else {
+			// Show login page if no form submission
+			$this->view('login', $data);
 		}
 
 	}
