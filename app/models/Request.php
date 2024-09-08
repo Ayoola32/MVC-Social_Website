@@ -9,20 +9,16 @@ namespace Core;
 
 defined('ROOTPATH') OR exit('Access Denied!');
 
-class Request
-{
+class Request{
 	
 	/** check which post method was used **/
-	public function method():string
-	{
+	public function method():string{
 		return $_SERVER['REQUEST_METHOD'];
 	}
 
 	/** check if something was posted **/
-	public function posted():bool
-	{
-		if($_SERVER['REQUEST_METHOD'] == "POST" && count($_POST) > 0)
-		{
+	public function posted():bool{
+		if($_SERVER['REQUEST_METHOD'] == "POST" && count($_POST) > 0){
 			return true;
 		}
 
@@ -31,15 +27,12 @@ class Request
 
 
 	/** get a value from the POST variable **/
-	public function post(string $key = '', mixed $default = ''):mixed
-	{
+	public function post(string $key = '', mixed $default = ''):mixed{
 
-		if(empty($key))
-		{
+		if(empty($key)){
 			return $_POST;
 		}else
-		if(isset($_POST[$key]))
-		{
+		if(isset($_POST[$key])){
 			return $_POST[$key];
 		}
 
@@ -47,15 +40,12 @@ class Request
 	}
 
 	/** get a value from the FILES variable **/
-	public function files(string $key = '', mixed $default = ''):mixed
-	{
+	public function files(string $key = '', mixed $default = ''):mixed{
 
-		if(empty($key))
-		{
+		if(empty($key)){
 			return $_FILES;
 		}else
-		if(isset($_FILES[$key]))
-		{
+		if(isset($_FILES[$key])){
 			return $_FILES[$key];
 		}
 
@@ -66,12 +56,11 @@ class Request
 	public function get(string $key = '', mixed $default = ''):mixed
 	{
 
-		if(empty($key))
-		{
+		if(empty($key)){
+
 			return $_GET;
-		}else
-		if(isset($_GET[$key]))
-		{
+		}else if(isset($_GET[$key])){
+
 			return $_GET[$key];
 		}
 
@@ -86,11 +75,9 @@ class Request
 
 
 	/** get a value from the REQUEST variable **/
-	public function input(string $key, mixed $default = ''):mixed
-	{
+	public function input(string $key, mixed $default = ''):mixed{
 
-		if(isset($_REQUEST[$key]))
-		{
+		if(isset($_REQUEST[$key])){
 			return $_REQUEST[$key];
 		}
 
@@ -98,8 +85,7 @@ class Request
 	}
 
 	/** get all values from the REQUEST variable **/
-	public function all():mixed
-	{
+	public function all():mixed{
 
 		return $_REQUEST;
 
