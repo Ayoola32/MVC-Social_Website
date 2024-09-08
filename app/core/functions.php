@@ -52,6 +52,15 @@ function redirect($path){
 	die;
 }
 
+function user(string $key = ''){
+  $ses = new \Core\Session;
+  $row = $ses->user();
+  if (!empty($row->$key)) {
+    return $row->$key;
+  }
+  return '';
+}
+
 /** load image. if not exist, load placeholder **/
 function get_image(mixed $file = '',string $type = 'post'):string{
 
