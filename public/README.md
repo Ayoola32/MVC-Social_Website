@@ -1,5 +1,5 @@
-Singup
-Login/Logout
+Singup // Done
+Login/Logout // Done
 Timeline/Home
 Profile
 Post
