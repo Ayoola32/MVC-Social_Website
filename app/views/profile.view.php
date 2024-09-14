@@ -1,3 +1,5 @@
 <?php $this->view('header');?>
-<h1>Profile page</h1>
+<main class="p-4">
+    <h1>Profile page</h1>
+</main>
 <?php $this->view('footer');?>
