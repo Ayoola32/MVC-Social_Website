@@ -18,7 +18,20 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                  <img src="<?=get_image($row->user_image)?>" alt="Admin" class="rounded-circle" width="150">
+                    <span>
+                        <img src="<?=get_image($row->user_image)?>" alt="Admin" class="profile-image rounded-circle" width="150">
+                        <label for="image">
+                            <i style="position: absolute; cursor: pointer;" class="h1 text-primary bi bi-image"></i>
+                            <input id="image" onchange="display_image(this.files[0])" type="file" class="d-none" name="image">
+                        </label>
+
+                        <script>
+                            function display_image(file) {
+                                document.querySelector(".profile-image").src = URL.createObjectURL(file);
+                            }
+                        </script>
+                    </span>
+
                     <div class="mt-3">
                       <h4><?=ucfirst(esc($row->username))?></h4>
                       <p class="text-secondary mb-1">PHP Developer</p>
@@ -43,51 +56,85 @@
               </div>
             </div>
             <div class="col-md-8">
-              <div class="card mb-3">
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Full Name</h6>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="mb-0">
+                                    PROFILE
+                                </h4>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Full Name</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                Abubakar Sidiq
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                @example.com
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Phone</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                (239) 111-1111
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h6 class="mb-0">Address</h6>
+                            </div>
+                            <div class="col-sm-9 text-secondary">
+                                Salford Manchester, England
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a class="btn btn-info" href="#">Edit</a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="col-sm-9 text-secondary">
-                      Abubakar Sidiq
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Email</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      @example.com
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Phone</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                      (239) 111-1111
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-3">
-                      <h6 class="mb-0">Address</h6>
-                    </div>
-                    <div class="col-sm-9 text-secondary">
-                        Salford Manchester, England
-                    </div>
-                  </div>
-                  <hr>
-                  <div class="row">
-                    <div class="col-sm-12">
-                      <a class="btn btn-info " target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                    </div>
-                  </div>
                 </div>
-              </div>
+
+                <!-- TEXTAREA -->
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <h4 class="mb-0">
+                                    Status
+                                </h4>
+                            </div>
+
+                        </div>
+                        <hr>
+                        <form action="" method="post">
+                            <textarea class="responsive-textarea" name="" id=""></textarea>
+                        </form>
+
+                        
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <a class="btn btn-info" href="">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
               <div class="row gutters-sm">
                 <div class="col-sm-6 mb-3">
