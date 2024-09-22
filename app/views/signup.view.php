@@ -76,11 +76,12 @@
                 <h1 class="h3 mb-3 fw-normal text-center">Sign up</h1>
 
 
-                <?php if(!empty($errors)):?>
+                <!-- Display general error messages -->
+                <?php if (!empty($errors['exists'])): ?>
                     <div class='alert alert-warning text-center'>
-                        <h4>Fix the input field</h4>
+                        <?= $errors['exists']; ?>
                     </div>
-                <?php endif;?>
+                <?php endif; ?>
 
                 <div class="form-floating">
                     <input type="email" name="email" value="<?= old_value('email') ?>" class="form-control" id="floatingEmail" placeholder="name@example.com" autocomplete="email">
