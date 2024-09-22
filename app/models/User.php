@@ -25,8 +25,16 @@ class User{
 		'date'
 	];
 
-	public function validate($data){
-		$this->errors = [];
+    // Check if the username or email already exists
+    public function userExists($username, $email) {
+        $sql = "SELECT * FROM {$this->table} WHERE username = :username OR email = :email LIMIT 1";
+        $result = $this->query($sql, ['username' => $username, 'email' => $email]);
+        return $result ? $result[0] : false; // Return the user if found, or false
+    }
+
+    // Validation logic
+    public function validate($data) {
+        $this->errors = [];
 
 		if(empty($data['email'])){
 			$this->errors['email'] = "Email is required";
@@ -40,17 +48,19 @@ class User{
 			$this->errors['username'] = "Username can only have letters and numbers with no spaces";
 		}
 		
-
-		
 		if(empty($data['password'])){
 			$this->errors['password'] = "Password is required";
 		}
 
-		
 		if(empty($data['terms'])){
 			$this->errors['terms'] = "Please accept the terms and conditions";
 		}
 
+		// Check if username or email already exists
+		if ($this->userExists($data['username'], $data['email'])) {
+			$this->errors['exists'] = "Username or Email already exists";
+		}
+		
 
 		if(empty($this->errors)){
 			return true;
