@@ -77,7 +77,7 @@
 
                 <?php if(!empty($errors)):?>
                     <div class='alert alert-warning text-center'>
-                        <h5><?=implode("<br>", $errors);?></h5>
+                        <?=implode("<br>", $errors);?>
                     </div>
                 <?php endif;?>
 
