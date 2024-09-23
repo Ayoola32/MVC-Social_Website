@@ -3,24 +3,24 @@
   <div class="container">
     <div class="main-body">    
       <div class="row gutters-sm">
-        
+
         <!-- PICTURE PROFILE -->
         <div class="col-md-4 mb-3">
           <div class="card">
             <div class="card-body">
               <div class="d-flex flex-column align-items-center text-center">
                 <span>
-                    <img src="<?=get_image($row->user_image)?>" alt="Admin" class="profile-image rounded-circle" width="150">
-                    <label for="image">
-                        <i style="position: absolute; cursor: pointer;" class="h1 text-primary bi bi-image"></i>
-                        <input id="image" onchange="display_image(this.files[0])" type="file" class="d-none" name="image">
-                    </label>
+                  <img src="<?=get_image($row->user_image)?>" alt="Admin" class="profile-image rounded-circle" width="150">
+                  <label for="image">
+                      <i style="position: absolute; cursor: pointer;" class="h1 text-primary bi bi-image"></i>
+                      <input id="image" onchange="display_image(this.files[0])" type="file" class="d-none" name="image">
+                  </label>
 
-                    <script>
-                        function display_image(file) {
-                            document.querySelector(".profile-image").src = URL.createObjectURL(file);
-                        }
-                    </script>
+                  <script>
+                      function display_image(file) {
+                          document.querySelector(".profile-image").src = URL.createObjectURL(file);
+                      }
+                  </script>
                 </span>
 
                 <div class="mt-3">
@@ -53,12 +53,18 @@
           <!-- PROFILE -->
           <div class="card mb-3">
               <div class="card-body">
+
+                  <!-- Profile progress bar -->
+                  <div class="profile-image-prog progress mb-1 d-none" role="progressbar">
+                    <div class="progress-bar" style="width: 0%">0%</div>
+                  </div>
+
                   <div class="row">
-                      <div class="col-sm-3">
-                          <h4 class="mb-0">
-                              PROFILE
-                          </h4>
-                      </div>
+                    <div class="col-sm-3">
+                        <h4 class="mb-0">
+                            PROFILE
+                        </h4>
+                    </div>
                   </div>
                   <hr>
 
@@ -131,8 +137,12 @@
                     </form>
                   </div>
                     
-                  
+                  <!-- Profile progress bar -->
+                  <div class="profile-image-prog progress mb-1 d-nne" role="progressbar">
+                    <div class="progress-bar" style="width: 10%">0%</div>
+                  </div>
               </div>
+              
           </div>
         
           <!-- ViVIEW POSTS -->
