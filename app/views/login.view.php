@@ -91,17 +91,14 @@
                     <label for="floatingPassword">Password</label>
                 </div>
                 
-                <!-- <div class="d-flex justify-content-center">
-                    <div class="form-check text-start my-3 text-center">
-                       <label for="checkbox">
-                            <input class="form-check-input" type="checkbox" value="1" id="flexCheckDefault" name="terms"><a href="" class="text-decoration-none"> Accept Terms</a>
-                       </label>
-                    </div>
-                </div> -->
-                
+                <button class="btn btn-primary w-100 py-2 mb-2" name="submit "type="submit">Sign in</button>
 
-                <button class="btn btn-primary w-100 py-2" name="submit "type="submit">Sign in</button>
-                
+                <div class="form-floating text-center">
+                    <a href="#" class="text-decoration-none">Forgot Password</a>
+                </div>
+
+                <hr>
+
                 <div class="form-floating text-center">
                     <p> Don't have an account yet? <a href="<?=ROOT?>/signup" class="text-decoration-none">Signup here</a></p>
                 </div>
