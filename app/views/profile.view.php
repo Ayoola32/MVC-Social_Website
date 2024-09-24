@@ -13,7 +13,7 @@
                   <img src="<?=get_image($row->user_image)?>" alt="Admin" class="profile-image rounded-circle" width="150">
                   <label for="image">
                       <i style="position: absolute; cursor: pointer;" class="h1 text-primary bi bi-image"></i>
-                      <input id="image" onchange="display_image(this.files[0])" type="file" class="d-none" name="image">
+                      <input id="image" onchange="display_image(this.files[0]); change_image(file)" type="file" class="d-none" name="image">
                   </label>
 
                   <script>
@@ -138,8 +138,8 @@
                   </div>
                     
                   <!-- Profile progress bar -->
-                  <div class="profile-image-prog progress mb-1 d-nne" role="progressbar">
-                    <div class="progress-bar" style="width: 10%">0%</div>
+                  <div class="profile-image-prog progress mb-1 d-none" role="progressbar">
+                    <div class="progress-bar" style="width: 0%">0%</div>
                   </div>
               </div>
               
@@ -223,4 +223,40 @@
     </div>
   </div>
 </main>
+
+
+<!-- Ajax script -->
+<script>
+  function change_image(file) {
+    var obj = {};
+    obj.image = file;
+    obj.data_type = "profile-image";
+    obj.id = "<?=user('user_id')?>";
+
+    send_data(obj);  // Corrected function name
+  }
+
+  function send_data(obj) {  // Fixed function name here
+    var myForm = new FormData();
+
+    for (key in obj) {
+      myForm.append(key, obj[key]);
+    }
+
+    var ajax = new XMLHttpRequest();
+    ajax.addEventListener('readystatechange', function (e) {
+      if (ajax.readyState == 4 && ajax.status == 200) {
+        handle_result(ajax.responseText);
+      }
+    });
+    ajax.open('post', '<?=ROOT?>/ajax', true);
+    ajax.send(myForm);
+  }
+
+  function handle_result(result) {
+    alert(result);
+    console.log(result);
+  }
+  
+</script>
 <?php $this->view('footer');?>
