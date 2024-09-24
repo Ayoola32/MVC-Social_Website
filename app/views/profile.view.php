@@ -13,7 +13,7 @@
                   <img src="<?=get_image($row->user_image)?>" alt="Admin" class="profile-image rounded-circle" width="150">
                   <label for="image">
                       <i style="position: absolute; cursor: pointer;" class="h1 text-primary bi bi-image"></i>
-                      <input id="image" onchange="display_image(this.files[0]); change_image(file)" type="file" class="d-none" name="image">
+                      <input id="image" onchange="display_image(this.files[0]); change_image(this.files[0])" type="file" class="d-none" name="image">
                   </label>
 
                   <script>
@@ -228,27 +228,22 @@
 <!-- Ajax script -->
 <script>
   function change_image(file) {
-    var obj = {};
-    obj.image = file;
-    obj.data_type = "profile-image";
-    obj.id = "<?=user('user_id')?>";
+    var myForm = new FormData();
+    myForm.append("image", file);
+    myForm.append("data_type", "profile-image");
+    myForm.append("id", "<?=user('user_id')?>");
 
-    send_data(obj);  // Corrected function name
+    send_data(myForm); 
   }
 
-  function send_data(obj) {  // Fixed function name here
-    var myForm = new FormData();
-
-    for (key in obj) {
-      myForm.append(key, obj[key]);
-    }
-
+  function send_data(myForm) {
     var ajax = new XMLHttpRequest();
     ajax.addEventListener('readystatechange', function (e) {
       if (ajax.readyState == 4 && ajax.status == 200) {
         handle_result(ajax.responseText);
       }
     });
+
     ajax.open('post', '<?=ROOT?>/ajax', true);
     ajax.send(myForm);
   }
