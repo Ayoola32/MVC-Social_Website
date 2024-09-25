@@ -4,6 +4,8 @@ namespace Controller;
 
 defined('ROOTPATH') OR exit('Access Denied!');
 use \Core\Session;
+use \Model\User;
+use \Core\Request;
 
 
 class Ajax{
@@ -12,9 +14,23 @@ class Ajax{
 	public function index(){
 		$ses = new Session();
 		if (!$ses->is_logged_in()) {
-			die;
+            die;
 		}
+        
+        $req = new Request();
+        $user = new User();
+        $info['success'] = false;
+        $info['message'] = "";
 
-        echo "WE good!";
+
+		if ($req->posted()) {
+            $data_type = $req->input('data_type');
+            if ($data_type == 'profile-image') {
+                $image_row = $req->files("image");
+                show($image_row);
+                $info['success'] = true;
+            }
+        }
+        echo json_encode($info);
 	}
 }
