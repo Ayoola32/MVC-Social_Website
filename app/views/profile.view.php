@@ -13,12 +13,21 @@
                   <img src="<?=get_image($row->user_image)?>" alt="Admin" class="profile-image rounded-circle" width="150">
                   <label for="image">
                       <i style="position: absolute; cursor: pointer;" class="h1 text-primary bi bi-image"></i>
-                      <input id="image" onchange="display_image(this.files[0]); change_image(this.files[0])" type="file" class="d-none" name="image">
+                      <input id="image" onchange="display_image(this.files[0]);" type="file" class="d-none" name="image">
                   </label>
 
                   <script>
                       function display_image(file) {
-                          document.querySelector(".profile-image").src = URL.createObjectURL(file);
+                        let allowed = ['jpg', 'jpeg', 'png', 'webp'];
+                        let ext = file.name.split(".").pop();
+
+                        if (!allowed.includes(ext.toLowerCase())) {
+                          alert("Only files of this type is allowed: " + allowed.join(", "))
+                          return
+                        }
+
+                        document.querySelector(".profile-image").src = URL.createObjectURL(file);
+                        change_image(files);
                       }
                   </script>
                 </span>
